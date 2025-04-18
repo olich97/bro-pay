@@ -1,0 +1,54 @@
+// SPDX‑License‑Identifier: MIT
+pragma solidity ^0.8.26;
+
+import "forge-std/Script.sol";
+import {FoundryUpgrades} from "foundry-upgrades/Upgrades.sol";
+import {BroPayAddressRegistry} from "../src/BroPayAddressRegistry.sol";
+import {BroPayPaymaster}      from "../src/BroPayPaymaster.sol";
+import {BroPayEscrowMinter}   from "../src/BroPayEscrowMinter.sol";
+import {BroPayRefundGuard}    from "../src/BroPayRefundGuard.sol";
+
+contract Deploy is Script {
+    function run() external {
+        uint256 pk = vm.envUint("PRIV_KEY_PK");
+        vm.startBroadcast(pk);
+
+        BroPayAddressRegistry reg = BroPayAddressRegistry(
+            FoundryUpgrades.deployProxy(
+                "BroPayAddressRegistry",
+                abi.encodeCall(BroPayAddressRegistry.initialize, (msg.sender))
+            )
+        );
+
+        BroPayPaymaster pm = BroPayPaymaster(
+            FoundryUpgrades.deployProxy(
+                "BroPayPaymaster",
+                abi.encodeCall(
+                    BroPayPaymaster.initialize,
+                    (0x0576a174D229E3cFA37253523E645A78A0C91B57 /*EntryPoint*/, msg.sender)
+                )
+            )
+        );
+
+        BroPayEscrowMinter em = BroPayEscrowMinter(
+            FoundryUpgrades.deployProxy(
+                "BroPayEscrowMinter",
+                abi.encodeCall(BroPayEscrowMinter.initialize, (0x0 /* token */, msg.sender))
+            )
+        );
+
+        BroPayRefundGuard rg = BroPayRefundGuard(
+            FoundryUpgrades.deployProxy(
+                "BroPayRefundGuard",
+                abi.encodeCall(BroPayRefundGuard.initialize, (msg.sender))
+            )
+        );
+
+        console2.log("Registry", address(reg));
+        console2.log("Paymaster", address(pm));
+        console2.log("EscrowMinter", address(em));
+        console2.log("RefundGuard", address(rg));
+
+        vm.stopBroadcast();
+    }
+}
