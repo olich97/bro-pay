@@ -15,14 +15,14 @@ contract Deploy is Script {
         vm.startBroadcast(pk);
 
         BroPayAddressRegistry reg = BroPayAddressRegistry(
-            Upgrades.deployProxy(
+            Upgrades.deployUUPSProxy(
                 "BroPayAddressRegistry",
                 abi.encodeCall(BroPayAddressRegistry.initialize, (msg.sender))
             )
         );
 
         BroPayPaymaster pm = BroPayPaymaster(
-            Upgrades.deployProxy(
+            Upgrades.deployUUPSProxy(
                 "BroPayPaymaster",
                 abi.encodeCall(
                     BroPayPaymaster.initialize,
@@ -32,14 +32,14 @@ contract Deploy is Script {
         );
 
         BroPayEscrowMinter em = BroPayEscrowMinter(
-            Upgrades.deployProxy(
+            Upgrades.deployUUPSProxy(
                 "BroPayEscrowMinter",
                 abi.encodeCall(BroPayEscrowMinter.initialize, (0x0 /* token */, msg.sender))
             )
         );
 
         BroPayRefundGuard rg = BroPayRefundGuard(
-            Upgrades.deployProxy(
+            Upgrades.deployUUPSProxy(
                 "BroPayRefundGuard",
                 abi.encodeCall(BroPayRefundGuard.initialize, (msg.sender))
             )

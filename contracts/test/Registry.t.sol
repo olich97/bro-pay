@@ -12,7 +12,7 @@ contract RegistryTest is Test {
     function setUp() public {
         vm.startPrank(owner);
         reg = BroPayAddressRegistry(
-            Upgrades.deployProxy(
+            Upgrades.deployUUPSProxy(
                 "BroPayAddressRegistry",
                 abi.encodeCall(BroPayAddressRegistry.initialize, (owner))
             )

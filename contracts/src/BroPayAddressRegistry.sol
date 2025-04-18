@@ -1,8 +1,8 @@
 // SPDX‑License‑Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
+import "@openzeppelin-contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin-contracts/utils/structs/EnumerableSet.sol";
 import "./TimelockedUUPS.sol";
 
 /**

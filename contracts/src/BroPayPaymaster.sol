@@ -1,9 +1,9 @@
 // SPDX‑License‑Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "account-abstraction/interfaces/IPaymaster.sol";
-import "account-abstraction/core/BasePaymaster.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "eth-infinitism-account-abstraction/contracts/interfaces/IPaymaster.sol";
+import "eth-infinitism-account-abstraction/contracts/core/BasePaymaster.sol";
+import "@openzeppelin-contracts/token/ERC20/utils/SafeERC20.sol";
 
 import "./TimelockedUUPS.sol";
 
@@ -28,7 +28,7 @@ contract BroPayPaymaster is BasePaymaster, TimelockedUUPS {
     /* -------------------------------------------------------------------- */
 
     function _validatePaymasterUserOp(
-        UserOperation calldata userOp,
+        IPaymaster.UserOperation calldata userOp,
         bytes32,
         uint256 maxCost
     ) internal view override returns (bytes memory, uint256) {

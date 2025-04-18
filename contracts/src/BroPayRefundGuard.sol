@@ -1,8 +1,8 @@
 // SPDX‑License‑Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+import "@openzeppelin-contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin-contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 import "./TimelockedUUPS.sol";
 
 contract BroPayRefundGuard is Initializable, ReentrancyGuardUpgradeable, TimelockedUUPS {
