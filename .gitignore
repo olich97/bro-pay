@@ -10,13 +10,22 @@ cache/
 broadcast/
 
 # ── Mobile (Expo) ─────────────────────────
-packages/mobile/.expo/
-packages/mobile/android/app/build/
-packages/mobile/ios/build/
+mobile/.expo/
+mobile/android/app/build/
+mobile/ios/build/
 
 # ── Next.js build ─────────────────────────
-packages/web/.next/
+web/.next/
 
 # ── IDEs ──────────────────────────────────
 .vscode/
 .idea/
+
+
+node_modules/
+.pnpm/
+.env*
+out/
+cache/
+broadcast/
+.DS_Store

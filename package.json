@@ -1,12 +1,21 @@
 {
-  "name": "bro-pay",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "bro-pay",
+	"workspaces": [
+		"contracts",
+		"web",
+		"mobile"
+	],
+	"scripts": {
+		"dev:web": "npm --workspace web run dev",
+		"dev:contracts": "anvil",
+		"mobile": "npm --workspace mobile start -- --tunnel",
+		"test": "npm -ws test",
+		"dev": "concurrently -n \"web,expo,anvil\" -c \"cyan,magenta,yellow\"   \"npm run dev:web\" \"npm run mobile\" \"npm run dev:contracts\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "^9.1.2"
+	}
 }

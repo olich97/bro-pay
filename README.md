@@ -30,14 +30,11 @@ any messenger (comming next)) in **two taps** – no gas, no seed phrases.
 ---
 
 ## Prerequisites
-* `pnpm` ≥ 8
 * `node` ≥ 18
 * `rust`
 * `foundry`
 
 ```bash
-npm install -g pnpm
-
 curl -L https://foundry.paradigm.xyz | bash && foundryup
 
 npm instal -g expo-cli
@@ -74,11 +71,11 @@ forge script script/Deploy.s.sol \
 
 # 2. Web
 cd ../web
-pnpm dev            # http://localhost:3000
+npm run dev            # http://localhost:3000
 
 # 3. Mobile
 cd ../mobile
-pnpm i
+npm i
 expo start          # scan QR on two phones
 
 ```
@@ -88,10 +85,10 @@ expo start          # scan QR on two phones
 ## 🏗️ Dev scripts
 
 ```bash
-pnpm dev:web # Next.js dev server
-pnpm dev:contracts # Local Anvil node + hot‑reload Forge
-pnpm test # Runs Forge tests + Next lint
-pnpm mobile # Starts Expo in packages/mobile
+npm run dev:web # Next.js dev server
+npm run dev:contracts # Local Anvil node + hot‑reload Forge
+npm run test # Runs Forge tests + Next lint
+npm run mobile # Starts Expo in packages/mobile
 ```
 
 ## 🔒 Security & upgrades
