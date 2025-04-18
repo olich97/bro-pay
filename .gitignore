@@ -1,0 +1,22 @@
+
+# ── Node / pnpm ───────────────────────────
+node_modules/
+.pnpm/
+.env*
+
+# ── Foundry ───────────────────────────────
+out/
+cache/
+broadcast/
+
+# ── Mobile (Expo) ─────────────────────────
+packages/mobile/.expo/
+packages/mobile/android/app/build/
+packages/mobile/ios/build/
+
+# ── Next.js build ─────────────────────────
+packages/web/.next/
+
+# ── IDEs ──────────────────────────────────
+.vscode/
+.idea/
