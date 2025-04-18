@@ -1,8 +1,8 @@
 // SPDX‑License‑Identifier: MIT
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 import "./TimelockedUUPS.sol";
 
 contract BroPayRefundGuard is Initializable, ReentrancyGuardUpgradeable, TimelockedUUPS {
@@ -19,7 +19,7 @@ contract BroPayRefundGuard is Initializable, ReentrancyGuardUpgradeable, Timeloc
 
     mapping(bytes32 => Escrow) public escrows; // txHash → Escrow
 
-    /** @custom:oz‑upgrades‑unsafe‑allow constructor */
+    /** @custom:oz-upgrades-unsafe-allow constructor **/
     constructor() { _disableInitializers(); }
 
     function initialize(address owner_) public initializer {
@@ -39,6 +39,6 @@ contract BroPayRefundGuard is Initializable, ReentrancyGuardUpgradeable, Timeloc
         require(!e.claimed, "claimed");
         require(block.timestamp > e.timestamp + EXPIRY, "still fresh");
         e.claimed = true;
-        IERC20Upgradeable(e.token).transfer(e.sender, e.amount);
+        ERC20Upgradeable(e.token).transfer(e.sender, e.amount);
     }
 }

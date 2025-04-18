@@ -1,17 +1,18 @@
 // SPDX‑License‑Identifier: MIT
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
 
 import "account-abstraction/interfaces/IPaymaster.sol";
 import "account-abstraction/core/BasePaymaster.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
 import "./TimelockedUUPS.sol";
 
 contract BroPayPaymaster is BasePaymaster, TimelockedUUPS {
-    using SafeERC20Upgradeable for IERC20MetadataUpgradeable;
+    using SafeERC20 for IERC20;
 
     uint256 public maxGas = 300_000;
 
-    /** @custom:oz‑upgrades‑unsafe‑allow constructor */
+    /** @custom:oz-upgrades-unsafe-allow constructor **/
     constructor() {
         _disableInitializers();
     }

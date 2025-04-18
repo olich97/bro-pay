@@ -1,8 +1,9 @@
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
 
 import "forge-std/Test.sol";
 import {BroPayAddressRegistry} from "../src/BroPayAddressRegistry.sol";
-import {FoundryUpgrades}       from "foundry-upgrades/Upgrades.sol";
+import {Upgrades} from "openzeppelin-foundry-upgrades/Upgrades.sol";
+
 
 contract RegistryTest is Test {
     BroPayAddressRegistry reg;
@@ -11,7 +12,7 @@ contract RegistryTest is Test {
     function setUp() public {
         vm.startPrank(owner);
         reg = BroPayAddressRegistry(
-            FoundryUpgrades.deployProxy(
+            Upgrades.deployProxy(
                 "BroPayAddressRegistry",
                 abi.encodeCall(BroPayAddressRegistry.initialize, (owner))
             )

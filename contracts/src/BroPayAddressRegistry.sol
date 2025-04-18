@@ -1,23 +1,23 @@
 // SPDX‑License‑Identifier: MIT
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/structs/EnumerableSetUpgradeable.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "./TimelockedUUPS.sol";
 
 /**
  * @title Phone‑number → deterministic wallet mapping (write‑once)
  */
 contract BroPayAddressRegistry is Initializable, TimelockedUUPS {
-    using EnumerableSetUpgradeable for EnumerableSetUpgradeable.Bytes32Set;
+    using EnumerableSet for EnumerableSet.Bytes32Set;
 
     error AlreadyBound();
     error NotOwner();
 
     mapping(bytes32 => address) public resolve;
-    EnumerableSetUpgradeable.Bytes32Set private _allHashes;
+    EnumerableSet.Bytes32Set private _allHashes;
 
-    /** @custom:oz‑upgrades‑unsafe‑allow constructor */
+    /** @custom:oz-upgrades-unsafe-allow constructor **/
     constructor() {
         _disableInitializers();
     }

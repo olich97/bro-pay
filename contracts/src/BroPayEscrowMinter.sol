@@ -1,5 +1,5 @@
 // SPDX‑License‑Identifier: MIT
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20BurnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PermitUpgradeable.sol";
@@ -17,7 +17,7 @@ contract BroPayEscrowMinter is Initializable, TimelockedUUPS {
     mapping(bytes32 => bool) public processed;
     IERC20PermitUpgradeable public token;
 
-    /** @custom:oz‑upgrades‑unsafe‑allow constructor */
+    /** @custom:oz-upgrades-unsafe-allow constructor **/
     constructor() { _disableInitializers(); }
 
     function initialize(
