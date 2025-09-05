@@ -22,9 +22,6 @@ abstract contract TimelockedUUPS is UUPSUpgradeable, OwnableUpgradeable {
     /// @dev called by OZ during `upgradeTo`
     function _authorizeUpgrade(address newImpl) internal view override {
         bytes32 id = keccak256(abi.encode(newImpl, block.timestamp - GRACE_PERIOD));
-        require(
-            queued[id] != 0 && block.timestamp >= queued[id],
-            "upgrade blocked / grace"
-        );
+        require(queued[id] != 0 && block.timestamp >= queued[id], "upgrade blocked / grace");
     }
 }

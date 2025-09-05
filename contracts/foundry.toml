@@ -2,16 +2,31 @@
 src = "src"
 out = "out"
 libs = ["dependencies"]
+test = "test"
+script = "script"
+cache_path = "cache"
 solc_version = "0.8.28"
 optimizer = true
 optimizer_runs = 200
-via_ir = true
+via_ir = false
+evm_version = "cancun"
+bytecode_hash = "none"
+cbor_metadata = false
+ffi = false
+fs_permissions = [{access = "read-write", path = "./"}]
+
+[profile.ci]
+fuzz = { runs = 10000 }
+invariant = { runs = 1000 }
 
 [rpc_endpoints]
-basesepolia = "${RPC_BASE}"
+basesepolia = "${RPC_URL_BASE_SEPOLIA}"
+basemainnet = "${RPC_URL_BASE_MAINNET}"
+local = "http://localhost:8545"
 
 [etherscan]
-basesepolia = { key = "${BASESCAN_KEY}" }
+basesepolia = { key = "${BASESCAN_API_KEY}", url = "https://api-sepolia.basescan.org/api" }
+basemainnet = { key = "${BASESCAN_API_KEY}", url = "https://api.basescan.org/api" }
 
 [fmt]
 line_length = 100

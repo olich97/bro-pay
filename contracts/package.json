@@ -1,16 +1,84 @@
 {
-  "name": "contracts",
+  "name": "bro-pay-contracts",
   "version": "1.0.0",
-  "description": "**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**",
+  "description": "Bro Pay v1 Smart Contracts - WhatsApp-Native Payment System using ERC-4337 Account Abstraction",
   "main": "index.js",
   "directories": {
     "lib": "lib",
-    "test": "test"
+    "test": "test",
+    "script": "script",
+    "src": "src"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "forge build",
+    "clean": "forge clean",
+    "test": "forge test",
+    "test:gas": "forge test --gas-report",
+    "test:coverage": "forge coverage",
+    "test:verbose": "forge test -vvv",
+    "test:match": "forge test --match-contract",
+    "test:fuzz": "forge test --fuzz-runs 1000",
+    "format": "forge fmt",
+    "format:check": "forge fmt --check",
+    "snapshot": "forge snapshot",
+    "anvil": "anvil",
+    "chisel": "chisel",
+    "deploy:local": "forge script script/Deploy.s.sol:Deploy --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast",
+    "deploy:base-sepolia": "forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL_BASE_SEPOLIA --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $BASESCAN_API_KEY",
+    "deploy:base-mainnet": "forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL_BASE_MAINNET --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $BASESCAN_API_KEY",
+    "verify:base-sepolia": "forge verify-contract --chain-id 84532 --etherscan-api-key $BASESCAN_API_KEY",
+    "verify:base-mainnet": "forge verify-contract --chain-id 8453 --etherscan-api-key $BASESCAN_API_KEY",
+    "simulation:base-sepolia": "forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL_BASE_SEPOLIA",
+    "simulation:base-mainnet": "forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL_BASE_MAINNET",
+    "gas:accountfactory": "forge test --match-contract AccountFactoryTest --gas-report",
+    "gas:smartaccount": "forge test --match-contract SmartAccountTest --gas-report",
+    "gas:escrowvault": "forge test --match-contract EscrowVaultTest --gas-report",
+    "gas:paymaster": "forge test --match-contract BroPaymasterTest --gas-report",
+    "lint": "npm run format:check",
+    "precommit": "npm run format && npm run test && npm run build",
+    "dependencies:install": "forge install",
+    "dependencies:update": "forge update",
+    "docs:generate": "forge doc",
+    "slither": "slither src/",
+    "mythril": "myth analyze src/",
+    "debug": "forge test --debug",
+    "trace": "forge test --trace-all"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/bro-pay"
+  },
+  "keywords": [
+    "ethereum",
+    "erc-4337",
+    "account-abstraction",
+    "whatsapp",
+    "payments",
+    "passkey",
+    "webauthn",
+    "base-l2",
+    "smart-contracts",
+    "foundry"
+  ],
+  "author": "Bro Pay Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@openzeppelin/foundry-upgrades": "^0.3.0"
+  },
+  "foundry": {
+    "profile": "default",
+    "src": "src",
+    "out": "out",
+    "libs": ["lib"],
+    "test": "test",
+    "cache_path": "cache",
+    "optimizer": true,
+    "optimizer_runs": 200,
+    "via_ir": false,
+    "solc_version": "0.8.28",
+    "evm_version": "cancun"
+  }
 }
